@@ -1,9 +1,11 @@
-const Controllers = require('../database/controllers');
+const express = require('express');
+const router = express.Router();
+const Controllers = require('./controllers');
 
-module.exports = app => {
-  app.get('/', Controllers.test),
+router.get('/', Controllers.test),
 
-  app.get('/posts', Controllers.getPosts),
+router.get('/posts', Controllers.getPosts),
 
-  app.post('/posts', Controllers.addPost)
-}
+router.post('/posts', Controllers.addPost)
+
+module.exports = router;

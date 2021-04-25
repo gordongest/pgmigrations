@@ -1,11 +1,8 @@
-const pg = require('pg');
+const { Pool } = require('pg');
 
-const pool = new pg.Pool({
-  host: 'localhost',
-  port: 5432,
-  database: 'socialnetwork',
-  user: 'gordongest',
-});
+const dbConfig = { connectionString: process.env.DATABASE_URL }
+
+const pool = new Pool(dbConfig);
 
 module.exports = {
   test(req, res) {
@@ -61,8 +58,6 @@ module.exports = {
 
   async addPost(req, res) {
     const { lat, lng } = req.body;
-
-    console.log(lat, lng);
 
     await pool.query(
       `
